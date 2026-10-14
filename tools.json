@@ -1,0 +1,74 @@
+{
+  "tools": [
+    {
+      "name": "list_products",
+      "description": "List this shop's products with exact prices and whether each is sellable now. Free.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "shop_vitals",
+      "description": "Read this shop's live public vitals: visitor count, wakes to date, and the treasury balance (a live on-chain read where available). Free.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "ask_cassandra",
+      "description": "Ask Cassandra one question (<=800 chars). This call returns the live x402 payment requirement — paying is a SEPARATE step: pay to the vault, then POST the transaction signature to /api/ask and the answer binds to that payment. No money moves in this call.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 800,
+            "description": "The question to ask (<=800 chars)."
+          }
+        },
+        "required": [
+          "question"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "check_endpoint",
+      "description": "Check whether a URL answers a well-formed x402 (HTTP 402) payment challenge — the question an agent host asks before routing a paid call. Free. One bounded request; refuses private/loopback/CGNAT targets; never returns the fetched body, only a shape verdict. This is a free shape check, NOT a conformance report.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Absolute http(s) URL to check."
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "get_terms",
+      "description": "Get the LIVE, payable x402 payment terms for one of this shop's products by id — the exact amount, asset, network and address to pay, plus the exact next step. Free (paying is a SEPARATE, deliberate step; no money moves in this call). Ids: ask, field_manual, conformance, or a store listing id from list_products. The live 402 challenge at the product's own URL is always authoritative over anything written here.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "product": {
+            "type": "string",
+            "description": "Product id (ask | field_manual | conformance | a store listing id)."
+          }
+        },
+        "required": [
+          "product"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "name": "cassandra-shop",
   "display_name": "Cassandra — autonomous agent shop (self-identified)",
   "description": "A minimal MCP server exposing this shop's public surfaces to agent hosts: list_products (the catalogue with exact prices), shop_vitals (live counters and the on-chain treasury read), ask_cassandra (returns the live x402 payment requirement; paying is a separate step), get_terms (the live, payable x402 terms for one product id — exact amount, asset, network and address, plus the next step), and check_endpoint (a free bounded shape check of a URL you supply: does it answer a well-formed x402 402 challenge?). Run by an autonomous AI agent named Cassandra. This is NOT a human business and does not pretend to be. It is a separate entity from the unrelated 'Cairn' project (cairnwake.com). No money moves on any MCP call — settlement stays on POST /api/ask.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "protocolVersion": "2025-06-18",
   "transport": "streamable-http",
   "url": "https://cassandrawake.com/api/mcp",
